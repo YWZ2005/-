@@ -1,0 +1,27 @@
+- [x] users 表包含所有必需字段：id (FK auth.users)、credit_score、ocean_energy、verification_status、created_at、updated_at
+- [x] users 表 credit_score 默认值为 100，ocean_energy 默认值为 0
+- [x] users 表配置了 auth.users 触发器，用户注册时自动创建 profile
+- [x] bottles 表包含所有必需字段：id、bottle_type、content (JSONB)、status、thrower_id、fisher_id、created_at、expires_at
+- [x] bottles 表 bottle_type 枚举值为 text/voice/draw
+- [x] bottles 表 status 枚举值为 floating/fished/opened
+- [x] bottles 表 thrower_id 和 fisher_id 均有外键约束指向 users
+- [x] conversations 表包含所有必需字段：id、bottle_id、user_a_id、user_b_id、status、last_active_at、created_at
+- [x] conversations 表 status 枚举值为 active/archived
+- [x] messages 表包含所有必需字段：id、conversation_id、sender_id、content、media_type、is_read、created_at
+- [x] ocean_assets 表包含所有必需字段：id、user_id、asset_type、asset_key、asset_name、unlocked_at、rarity
+- [x] 所有表均启用了 RLS (ALTER TABLE ... ENABLE ROW LEVEL SECURITY)
+- [x] bottles 表 RLS 策略：用户可查看自己扔的瓶子 (thrower_id = auth.uid())
+- [x] bottles 表 RLS 策略：用户可查看自己捞到的瓶子 (fisher_id = auth.uid() AND status IN ('fished', 'opened'))
+- [x] bottles 表 RLS 策略：已认证用户可查看 floating 状态的瓶子（公海）
+- [x] bottles 表 RLS 策略：用户可插入自己扔的瓶子
+- [x] bottles 表 RLS 策略：捞瓶者可更新瓶子状态，并有触发器保护不能篡改其他字段
+- [x] users 表 RLS 策略：用户可查看自己的完整信息
+- [x] users 表隐私保护：通过 user_profiles 视图暴露公开字段，隐私字段仅本人可见
+- [x] conversations 表 RLS 策略：会话双方均可查看和更新
+- [x] messages 表 RLS 策略：会话双方均可查看和插入消息
+- [x] ocean_assets 表 RLS 策略：用户只能查看自己的资产
+- [x] 关键查询字段均创建了索引（bottles.status/bottles.thrower_id/bottles.fisher_id/conversations.user_a_id/messages.conversation_id 等）
+- [x] RLS 策略使用幂等写法（DROP POLICY IF EXISTS + CREATE POLICY）
+- [x] SQL 脚本中包含暗海隔离机制的应用层实现说明注释
+- [x] messages 表启用了 Supabase Realtime INSERT 事件推送
+- [x] SQL 脚本可直接在 Supabase SQL Editor 中无错误运行
