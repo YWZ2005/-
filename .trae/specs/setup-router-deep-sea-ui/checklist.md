@@ -1,0 +1,17 @@
+- [x] package.json 配置正确，包含 Expo SDK 51+、Expo Router、NativeWind、Reanimated、Gesture Handler 等依赖
+- [x] tsconfig.json 配置严格模式，路径别名正确 (@/* -> ./*)
+- [x] babel.config.js 配置了 nativewind/babel 和 react-native-reanimated/plugin（reanimated 在最后）
+- [x] tailwind.config.js 扩展了深海主题色：deepSea (#0B132B)、midnight (#1C2541)、bioluminescent (#5BC0BE)、dawn (#FFD166)、glass (rgba(255,255,255,0.05))
+- [x] app/_layout.tsx 根布局存在，使用 Stack 导航并包裹 DeepSeaBackground
+- [x] app/(tabs)/_layout.tsx Tab 布局存在，包含三个 Tab（星海/海域/我的）
+- [x] app/(tabs)/index.tsx 首页存在，有扔瓶/捞瓶按钮
+- [x] app/(tabs)/ocean.tsx 海域页存在
+- [x] app/(tabs)/profile.tsx 个人中心页存在
+- [x] app/bottle/[id].tsx 瓶子详情页存在，使用动态路由
+- [x] app/chat/[conversationId].tsx 聊天页存在，使用动态路由
+- [x] DeepSeaBackground 组件存在，使用 react-native-reanimated 实现深海粒子光斑动画
+- [x] DeepSeaBackground 组件支持绝对定位全屏覆盖，可作为底层背景
+- [x] GlassCard 组件存在，实现玻璃拟态效果（半透明背景 + 荧光描边 + 模糊）
+- [x] GlassCard 组件支持 children 传递和自定义样式扩展
+- [x] 所有组件均为函数式组件，使用 TypeScript 严格类型
+- [x] 目录结构清晰，组件按功能分类存放

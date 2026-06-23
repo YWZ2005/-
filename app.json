@@ -1,0 +1,25 @@
+{
+  "expo": {
+    "name": "星海漂流",
+    "slug": "xinghai-drift",
+    "scheme": "xinghai-drift",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "dark",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#0B132B"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "icon": "./assets/icon.png",
+    "plugins": [
+      "expo-router"
+    ],
+    "extra": {
+      "routerOrigin": "https://example.com"
+    }
+  }
+}
