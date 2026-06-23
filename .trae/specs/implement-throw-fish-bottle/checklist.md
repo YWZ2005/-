@@ -1,0 +1,20 @@
+- [x] lib/supabase.ts 存在，正确创建 Supabase 客户端（含 AsyncStorage 持久化 + URL polyfill）
+- [x] types/database.ts 存在，包含数据库表类型定义
+- [x] types/index.ts 存在，包含业务类型（BottleContent、ThrowBottleParams 等）
+- [x] lib/constants.ts 存在，包含 DAILY_THROW_LIMIT=3、CREDIT_THRESHOLD=60 等常量
+- [x] package.json 包含 expo-av、expo-haptics、@react-native-async-storage/async-storage、react-native-url-polyfill 依赖
+- [x] useBottle Hook 存在，throwBottle 方法写入 bottles 表状态为 floating
+- [x] throwBottle 包含每日3次限制校验
+- [x] fishBottle 方法随机捞取 floating 状态瓶子
+- [x] fishBottle 实现暗海隔离（信用分 < 60 只捞低信用分瓶子，高信用分用户有兜底机制）
+- [x] fishBottle 捞到后原子更新 status=fished 和 fisher_id（乐观锁防并发）
+- [x] fishBottle 有标签兴趣权重匹配机制
+- [x] fishBottle 有并发重试机制（最多3次）
+- [x] BottomDrawer 组件实现从底部滑出的抽屉效果（Reanimated 动画 + 遮罩）
+- [x] ThrowBottleAnimation 实现抛物线抛出+缩小动画，配合 haptics 震动
+- [x] RadarScan 组件实现雷达扫描动画效果（同心圆 + 旋转扫描线 + 光点 + 找到状态）
+- [x] TextBottleSheet 文字输入弹窗存在（多行输入 + 标签选择 + 字符计数）
+- [x] 首页 index.tsx 整合扔瓶（Drawer + 类型选择 + 文字表单 + 抛瓶动画）和捞瓶（雷达扫描 + 跳转详情）交互
+- [x] 所有错误均有 try/catch 处理和 loading 状态
+- [x] 代码无 any 类型，TypeScript 严格模式
+- [x] components/bottle/index.ts 统一导出所有组件
