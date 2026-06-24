@@ -6,7 +6,7 @@ import { GlassCard } from '@/components/ui';
 interface TabBarProps {
   state: {
     index: number;
-    routes: { name: string }[];
+    routes: { key: string; name: string }[];
   };
   descriptors: Record<string, { options: { title?: string } }>;
   navigation: { navigate: (route: string) => void };

@@ -78,11 +78,12 @@ function HomeScreen() {
     const result = await fishBottle();
 
     if (result.success && result.bottle) {
+      const bottle = result.bottle;
       setRadarScanning(false);
       setTimeout(() => {
         setRadarVisible(false);
         setTimeout(() => {
-          router.push(`/bottle/${result.bottle.id}`);
+          router.push(`/bottle/${bottle.id}`);
         }, 300);
       }, 1000);
     } else {

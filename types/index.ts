@@ -2,14 +2,14 @@ import type {
   BottleType,
   BottleStatus,
   ConversationStatus,
-  MediaType,
+  MediaType as DatabaseMediaType,
   VerificationStatus,
   AssetRarity,
   AssetType,
   User,
   Bottle,
   Conversation,
-  Message,
+  Message as DatabaseMessage,
   OceanAsset,
   Database,
   Json,
@@ -19,18 +19,22 @@ export type {
   BottleType,
   BottleStatus,
   ConversationStatus,
-  MediaType,
   VerificationStatus,
   AssetRarity,
   AssetType,
   User,
   Bottle,
   Conversation,
-  Message,
   OceanAsset,
   Database,
   Json,
 };
+
+export type MediaType = DatabaseMediaType | 'knock';
+
+export interface Message extends Omit<DatabaseMessage, 'media_type'> {
+  media_type: MediaType;
+}
 
 export interface TextBottleContent {
   text: string;
@@ -57,4 +61,16 @@ export interface BottleWithThrower extends Bottle {
   thrower: {
     credit_score: number;
   };
+}
+
+export interface ChatMessage extends Message {
+  isMe: boolean;
+  formattedTime: string;
+}
+
+export type DockingState = 'idle' | 'pending' | 'triggered' | 'completed';
+
+export interface KnockMessageContent {
+  type: 'knock';
+  knockCount: number;
 }

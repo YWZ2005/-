@@ -1,0 +1,22 @@
+- [x] 002 数据库迁移脚本存在，包含 docked 会话状态和 knock 媒体类型
+- [x] types/database.ts 更新了 conversation_status 枚举（增加 docked）和 media_type 枚举（增加 knock）
+- [x] types/index.ts 更新了聊天相关类型（ChatMessage、DockingState、KnockMessageContent）
+- [x] lib/constants.ts 包含 DOCKING_ROUND_THRESHOLD = 10 等常量
+- [x] useChat Hook 存在，实现了消息列表拉取
+- [x] useChat 实现了 Supabase Realtime INSERT 订阅，新消息实时上屏
+- [x] useChat 实现了 sendMessage 方法
+- [x] useChat 实现了女性友好机制（发起方判断 + 输入锁定 + 敲门消息）
+- [x] useChat 实现了 sendKnock 敲门消息方法
+- [x] useDocking Hook 存在，实现互动轮次计数
+- [x] useDocking 实现靠岸状态检测与触发
+- [x] useDocking 实现更新 conversations.status = 'docked' 和 docked_at
+- [x] useDocking 实现解锁双人专属海域资产（共振之石）
+- [x] ParchmentBubble 组件存在，羊皮纸卷轴风格消息气泡
+- [x] DockingAnimation 组件存在，全屏"频率共振"动画
+- [x] KnockAnimation 组件存在，敲门动画效果
+- [x] chat/[conversationId].tsx 使用 FlatList 渲染消息列表
+- [x] 聊天页面整合了 Realtime 订阅、女性友好机制、靠岸仪式
+- [x] 所有 Supabase 操作有 try/catch 和 loading 状态
+- [x] 代码无 any 类型，TypeScript 严格模式通过（tsc --noEmit 无错误）
+- [x] components/chat/index.ts 统一导出组件
+- [x] 修复了 tabs/_layout.tsx 和 index.tsx 中之前存在的 TypeScript 错误

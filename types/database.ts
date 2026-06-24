@@ -2,9 +2,9 @@ export type BottleType = 'text' | 'voice' | 'draw';
 
 export type BottleStatus = 'floating' | 'fished' | 'opened';
 
-export type ConversationStatus = 'active' | 'archived';
+export type ConversationStatus = 'active' | 'archived' | 'docked';
 
-export type MediaType = 'text' | 'voice' | 'image' | 'draw';
+export type MediaType = 'text' | 'voice' | 'image' | 'draw' | 'knock';
 
 export type VerificationStatus = 'none' | 'campus' | 'workplace';
 
@@ -53,6 +53,7 @@ export interface Conversation {
   status: ConversationStatus;
   last_active_at: string;
   created_at: string;
+  docked_at: string | null;
 }
 
 export interface Message {
@@ -97,8 +98,9 @@ export interface Database {
       };
       conversations: {
         Row: Conversation;
-        Insert: Omit<Conversation, 'id' | 'created_at' | 'last_active_at' | 'status'> & {
+        Insert: Omit<Conversation, 'id' | 'created_at' | 'last_active_at' | 'status' | 'docked_at'> & {
           status?: ConversationStatus;
+          docked_at?: string | null;
         };
         Update: Partial<Omit<Conversation, 'id' | 'created_at'>>;
       };
