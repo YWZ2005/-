@@ -10,8 +10,10 @@
   "include": [
     "app/**/*",
     "components/**/*",
+    "data/**/*",
     "lib/**/*",
     "hooks/**/*",
+    "services/**/*",
     "stores/**/*",
     "types/**/*"
   ]

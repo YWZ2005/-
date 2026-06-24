@@ -74,3 +74,35 @@ export interface KnockMessageContent {
   type: 'knock';
   knockCount: number;
 }
+
+export interface OceanStage {
+  id: string;
+  name: string;
+  level: number;
+  minExp: number;
+  maxExp: number;
+  description: string;
+  primaryColor: string;
+  secondaryColor: string;
+  icon: string;
+}
+
+export interface AssetConfig {
+  id: string;
+  name: string;
+  type: 'creature' | 'landscape' | 'decoration' | 'effect';
+  rarity: 'common' | 'rare' | 'epic' | 'legendary';
+  requiredExp: number;
+  icon: string;
+  description: string;
+  stage: string;
+}
+
+export interface ExchangeItem {
+  id: string;
+  name: string;
+  description: string;
+  cost: number;
+  icon: string;
+  category: 'boost' | 'skin' | 'tool' | 'effect';
+}

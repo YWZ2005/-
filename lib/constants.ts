@@ -19,3 +19,17 @@ export const DOCKING_ASSET_NAME = '共振之石';
 export const MAX_KNOCK_COUNT = 3;
 
 export const INITIAL_MESSAGE_LIMIT = 50;
+
+export const EXP_TEXT_BASE = 5;
+export const EXP_VOICE_BASE = 10;
+export const EXP_DRAW_BASE = 15;
+export const EXP_WARMED_BONUS = 50;
+
+export const DEPTH_LOW_THRESHOLD = 3;
+export const DEPTH_MID_THRESHOLD = 5;
+export const DEPTH_LOW_MULTIPLIER = 0;
+export const DEPTH_MID_MULTIPLIER = 1.0;
+export const DEPTH_HIGH_MULTIPLIER = 1.5;
+
+export const EXCHANGE_FISH_BOOST = 'fish_boost';
+export const EXCHANGE_SKIN_GLASS = 'skin_glass';

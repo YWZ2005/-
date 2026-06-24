@@ -1,0 +1,23 @@
+- [x] services/oceanExp.ts 存在，实现了 calculateExp 函数
+- [x] calculateExp 支持 text=5, voice=10, draw=15 的基础能量
+- [x] calculateExp 实现 interactionDepth 倍率（<3轮=0, 3-5轮=1.0x, >5轮=1.5x）
+- [x] calculateExp 实现 isWarmed 额外 +50
+- [x] services/oceanExp.ts 实现了 grantExp（计算后更新用户 ocean_energy，带乐观锁）
+- [x] services/oceanExp.ts 实现了 getCurrentStage（根据EXP获取海域阶段）
+- [x] services/oceanExp.ts 实现了 consumeExp（能量不足检查 + 原子扣减）
+- [x] services/oceanExp.ts 实现了 getUnlockedAssets（按EXP分组解锁/锁定）
+- [x] 海域阶段配置存在（浅滩/珊瑚礁/深海沉船/海底神殿/星海深渊）
+- [x] 海洋资产配置存在（12种生物/景观/装饰）
+- [x] 资产配置包含解锁所需EXP和稀有度
+- [x] 兑换物品配置存在（加速卡/皮肤/特效）
+- [x] OceanStageHeader 组件存在（海域名称+等级+进度条）
+- [x] AssetGrid 组件存在（网格图鉴，已解锁彩色/未解锁剪影）
+- [x] EnergyBottle 组件存在（能量瓶兑换商店弹窗）
+- [x] 兑换商店包含捞瓶加速卡和特殊瓶子皮肤
+- [x] (tabs)/ocean.tsx 整合了所有海域养成功能
+- [x] 页面有 loading 状态和错误处理
+- [x] 资产筛选标签功能（全部/生物/景观/装饰/特效）
+- [x] 统计信息卡片（已解锁资产/本周能量/靠岸次数）
+- [x] 所有 Supabase 操作有 try/catch
+- [x] 代码无 any 类型，TypeScript 严格模式通过（tsc --noEmit 零错误）
+- [x] components/ocean/index.ts 统一导出
