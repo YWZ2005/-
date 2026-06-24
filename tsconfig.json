@@ -15,6 +15,7 @@
     "hooks/**/*",
     "services/**/*",
     "stores/**/*",
-    "types/**/*"
+    "types/**/*",
+    "mock/**/*"
   ]
 }
