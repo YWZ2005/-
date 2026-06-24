@@ -1,5 +1,5 @@
 import React, { memo, forwardRef } from 'react';
-import { View, Pressable, StyleSheet, ViewProps, ViewStyle } from 'react-native';
+import { View, Pressable, StyleSheet, ViewProps, ViewStyle, Platform } from 'react-native';
 import { BlurView } from 'expo-blur';
 import Animated, {
   useAnimatedStyle,
@@ -31,7 +31,6 @@ const GlassCard = forwardRef<View, GlassCardProps>(function GlassCard(
     children,
     blurIntensity = 20,
     glowColor = '#5BC0BE',
-    className,
     padding = 'md',
     onPress,
     style,
@@ -60,14 +59,13 @@ const GlassCard = forwardRef<View, GlassCardProps>(function GlassCard(
   const paddingValue = PADDING_MAP[padding];
 
   const cardContent = (
-    <AnimatedBlurView
-      intensity={blurIntensity}
-      tint="dark"
+    <Animated.View
       style={[
         styles.blurContainer,
         {
           borderColor: glowColor + '40',
           padding: paddingValue,
+          backgroundColor: Platform.OS === 'web' ? 'rgba(28, 37, 65, 0.85)' : 'rgba(255, 255, 255, 0.05)',
         },
         animatedStyle,
         style as ViewStyle,
@@ -75,9 +73,16 @@ const GlassCard = forwardRef<View, GlassCardProps>(function GlassCard(
       ref={ref as any}
       {...props}
     >
+      {Platform.OS !== 'web' && (
+        <BlurView
+          intensity={blurIntensity}
+          tint="dark"
+          style={StyleSheet.absoluteFill}
+        />
+      )}
       <View style={styles.innerGlow} pointerEvents="none" />
       <View style={styles.content}>{children}</View>
-    </AnimatedBlurView>
+    </Animated.View>
   );
 
   if (onPress) {
@@ -104,7 +109,6 @@ const styles = StyleSheet.create({
     width: '100%',
     borderRadius: 24,
     borderWidth: 1,
-    backgroundColor: 'rgba(255, 255, 255, 0.05)',
     overflow: 'hidden',
     position: 'relative',
   },

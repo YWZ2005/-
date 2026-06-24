@@ -1,5 +1,5 @@
 import React, { useState, useCallback, memo } from 'react';
-import { View, Text, Alert } from 'react-native';
+import { View, Text, Alert, StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useRouter } from 'expo-router';
@@ -98,61 +98,61 @@ function HomeScreen() {
   }, [fishBottle, router]);
 
   return (
-    <SafeAreaView className="flex-1">
-      <View className="flex-1 px-6 py-4">
-        <View className="flex-row items-center justify-between mb-8">
-          <Text className="text-white text-2xl font-bold">星海漂流</Text>
+    <SafeAreaView style={styles.flex1}>
+      <View style={styles.container}>
+        <View style={styles.header}>
+          <Text style={styles.title}>星海漂流</Text>
           <GlassCard padding="sm" glowColor="#5BC0BE">
-            <View className="flex-row items-center gap-2">
-              <Text className="text-bioluminescent text-lg">✧</Text>
-              <Text className="text-white font-semibold">842</Text>
+            <View style={styles.energyContainer}>
+              <Text style={styles.energyIcon}>✧</Text>
+              <Text style={styles.energyText}>842</Text>
             </View>
           </GlassCard>
         </View>
 
-        <View className="flex-1 items-center justify-center relative">
-          <View className="relative w-72 h-72 items-center justify-center">
-            <View className="absolute w-72 h-72 rounded-full opacity-20" style={{ backgroundColor: '#5BC0BE' }} />
-            <View className="absolute w-56 h-56 rounded-full opacity-30" style={{ backgroundColor: '#5BC0BE' }} />
-            <View className="absolute w-40 h-40 rounded-full opacity-40" style={{ backgroundColor: '#5BC0BE' }} />
+        <View style={styles.centerContent}>
+          <View style={styles.oceanCircle}>
+            <View style={[styles.circleLayer, styles.circleOuter]} />
+            <View style={[styles.circleLayer, styles.circleMiddle]} />
+            <View style={[styles.circleLayer, styles.circleInner]} />
 
             <LinearGradient
               colors={['rgba(91, 192, 190, 0.6)', 'rgba(91, 192, 190, 0.1)']}
-              className="w-28 h-28 rounded-full items-center justify-center"
+              style={styles.centerButton}
             >
-              <Text className="text-5xl">🌊</Text>
+              <Text style={styles.waveEmoji}>🌊</Text>
             </LinearGradient>
 
-            <View className="absolute top-12 left-8 w-3 h-3 rounded-full bg-bioluminescent opacity-60" />
-            <View className="absolute top-20 right-12 w-2 h-2 rounded-full bg-white opacity-40" />
-            <View className="absolute bottom-16 left-16 w-4 h-4 rounded-full bg-dawn opacity-50" />
-            <View className="absolute bottom-24 right-8 w-2 h-2 rounded-full bg-bioluminescent opacity-70" />
-            <View className="absolute top-32 left-4 w-2 h-2 rounded-full bg-white opacity-30" />
-            <View className="absolute bottom-8 right-24 w-3 h-3 rounded-full bg-bioluminescent opacity-50" />
+            <View style={[styles.particle, styles.particle1]} />
+            <View style={[styles.star, styles.star1]} />
+            <View style={[styles.glowDot, styles.glowDot1]} />
+            <View style={[styles.particle, styles.particle2]} />
+            <View style={[styles.star, styles.star2]} />
+            <View style={[styles.glowDot, styles.glowDot2]} />
           </View>
 
-          <Text className="text-white/60 text-base mt-8 text-center">
+          <Text style={styles.subtitle}>
             在这片神秘的星海中{'\n'}每一个漂流瓶都承载着故事
           </Text>
 
           {dailyThrowCount > 0 && (
-            <Text className="text-white/40 text-xs mt-3">
+            <Text style={styles.dailyCount}>
               今日已投递 {dailyThrowCount}/3 个漂流瓶
             </Text>
           )}
         </View>
 
-        <View className="gap-4 mb-4">
+        <View style={styles.buttonGroup}>
           <GlassCard
             padding="lg"
             glowColor="#FFD166"
             onPress={handleThrowPress}
           >
-            <View className="flex-row items-center justify-center gap-3">
-              <Text className="text-3xl">🏮</Text>
+            <View style={styles.buttonContent}>
+              <Text style={styles.buttonIcon}>🏮</Text>
               <View>
-                <Text className="text-dawn text-xl font-bold">扔漂流瓶</Text>
-                <Text className="text-white/50 text-sm">把你的故事投向星海</Text>
+                <Text style={[styles.buttonTitle, { color: '#FFD166' }]}>扔漂流瓶</Text>
+                <Text style={styles.buttonSubtitle}>把你的故事投向星海</Text>
               </View>
             </View>
           </GlassCard>
@@ -162,11 +162,11 @@ function HomeScreen() {
             glowColor="#5BC0BE"
             onPress={handleFishPress}
           >
-            <View className="flex-row items-center justify-center gap-3">
-              <Text className="text-3xl">🎣</Text>
+            <View style={styles.buttonContent}>
+              <Text style={styles.buttonIcon}>🎣</Text>
               <View>
-                <Text className="text-bioluminescent text-xl font-bold">捞漂流瓶</Text>
-                <Text className="text-white/50 text-sm">邂逅未知的温暖</Text>
+                <Text style={[styles.buttonTitle, { color: '#5BC0BE' }]}>捞漂流瓶</Text>
+                <Text style={styles.buttonSubtitle}>邂逅未知的温暖</Text>
               </View>
             </View>
           </GlassCard>
@@ -174,39 +174,39 @@ function HomeScreen() {
       </View>
 
       <BottomDrawer visible={drawerVisible && drawerType === 'throwOptions'} onClose={closeDrawer} height={40}>
-        <View className="flex-1 px-6 pt-2">
-          <Text className="text-white text-lg font-semibold text-center mb-6">选择漂流瓶类型</Text>
-          <View className="gap-4">
+        <View style={styles.drawerContent}>
+          <Text style={styles.drawerTitle}>选择漂流瓶类型</Text>
+          <View style={styles.drawerOptions}>
             <GlassCard padding="lg" glowColor="#FFD166" onPress={() => handleSelectThrowType('text')}>
-              <View className="flex-row items-center gap-4">
-                <Text className="text-3xl">🏮</Text>
-                <View className="flex-1">
-                  <Text className="text-dawn text-lg font-bold">文字漂流瓶</Text>
-                  <Text className="text-white/50 text-sm">写下你的心事，投向星海</Text>
+              <View style={styles.optionItem}>
+                <Text style={styles.optionIcon}>🏮</Text>
+                <View style={styles.optionTextContainer}>
+                  <Text style={[styles.optionTitle, { color: '#FFD166' }]}>文字漂流瓶</Text>
+                  <Text style={styles.optionSubtitle}>写下你的心事，投向星海</Text>
                 </View>
-                <Text className="text-white/30 text-xl">›</Text>
+                <Text style={styles.optionArrow}>›</Text>
               </View>
             </GlassCard>
 
             <GlassCard padding="lg" glowColor="#5BC0BE" onPress={() => handleSelectThrowType('voice')}>
-              <View className="flex-row items-center gap-4">
-                <Text className="text-3xl">🎙️</Text>
-                <View className="flex-1">
-                  <Text className="text-bioluminescent text-lg font-bold">语音漂流瓶</Text>
-                  <Text className="text-white/50 text-sm">用声音传递你的温度</Text>
+              <View style={styles.optionItem}>
+                <Text style={styles.optionIcon}>🎙️</Text>
+                <View style={styles.optionTextContainer}>
+                  <Text style={[styles.optionTitle, { color: '#5BC0BE' }]}>语音漂流瓶</Text>
+                  <Text style={styles.optionSubtitle}>用声音传递你的温度</Text>
                 </View>
-                <Text className="text-white/30 text-xl">›</Text>
+                <Text style={styles.optionArrow}>›</Text>
               </View>
             </GlassCard>
 
             <GlassCard padding="lg" glowColor="#5BC0BE" onPress={() => handleSelectThrowType('draw')}>
-              <View className="flex-row items-center gap-4">
-                <Text className="text-3xl">🎨</Text>
-                <View className="flex-1">
-                  <Text className="text-bioluminescent text-lg font-bold">手绘漂流瓶</Text>
-                  <Text className="text-white/50 text-sm">画出你此刻的心情</Text>
+              <View style={styles.optionItem}>
+                <Text style={styles.optionIcon}>🎨</Text>
+                <View style={styles.optionTextContainer}>
+                  <Text style={[styles.optionTitle, { color: '#5BC0BE' }]}>手绘漂流瓶</Text>
+                  <Text style={styles.optionSubtitle}>画出你此刻的心情</Text>
                 </View>
-                <Text className="text-white/30 text-xl">›</Text>
+                <Text style={styles.optionArrow}>›</Text>
               </View>
             </GlassCard>
           </View>
@@ -233,12 +233,239 @@ function HomeScreen() {
       />
 
       {error && (
-        <View className="absolute bottom-4 left-4 right-4 bg-red-500/90 px-4 py-3 rounded-xl">
-          <Text className="text-white text-sm text-center">{error}</Text>
+        <View style={styles.errorContainer}>
+          <Text style={styles.errorText}>{error}</Text>
         </View>
       )}
     </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  flex1: {
+    flex: 1,
+  },
+  container: {
+    flex: 1,
+    paddingHorizontal: 24,
+    paddingVertical: 16,
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 32,
+  },
+  title: {
+    color: '#FFFFFF',
+    fontSize: 24,
+    fontWeight: 'bold',
+  },
+  energyContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+  },
+  energyIcon: {
+    color: '#5BC0BE',
+    fontSize: 18,
+  },
+  energyText: {
+    color: '#FFFFFF',
+    fontWeight: '600',
+    fontSize: 18,
+  },
+  centerContent: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'relative',
+  },
+  oceanCircle: {
+    width: 288,
+    height: 288,
+    alignItems: 'center',
+    justifyContent: 'center',
+    position: 'relative',
+  },
+  circleLayer: {
+    position: 'absolute',
+    borderRadius: 144,
+  },
+  circleOuter: {
+    width: 288,
+    height: 288,
+    backgroundColor: '#5BC0BE',
+    opacity: 0.2,
+  },
+  circleMiddle: {
+    width: 224,
+    height: 224,
+    backgroundColor: '#5BC0BE',
+    opacity: 0.3,
+  },
+  circleInner: {
+    width: 160,
+    height: 160,
+    backgroundColor: '#5BC0BE',
+    opacity: 0.4,
+  },
+  centerButton: {
+    width: 112,
+    height: 112,
+    borderRadius: 56,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  waveEmoji: {
+    fontSize: 48,
+  },
+  particle: {
+    position: 'absolute',
+    width: 12,
+    height: 12,
+    borderRadius: 6,
+    backgroundColor: '#5BC0BE',
+    opacity: 0.6,
+  },
+  particle1: {
+    top: 48,
+    left: 32,
+  },
+  particle2: {
+    bottom: 96,
+    right: 32,
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    opacity: 0.7,
+  },
+  star: {
+    position: 'absolute',
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    backgroundColor: '#FFFFFF',
+    opacity: 0.4,
+  },
+  star1: {
+    top: 80,
+    right: 48,
+  },
+  star2: {
+    top: 128,
+    left: 16,
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    opacity: 0.3,
+  },
+  glowDot: {
+    position: 'absolute',
+    width: 16,
+    height: 16,
+    borderRadius: 8,
+    backgroundColor: '#FFD166',
+    opacity: 0.5,
+  },
+  glowDot1: {
+    bottom: 64,
+    left: 64,
+  },
+  glowDot2: {
+    bottom: 32,
+    right: 96,
+    width: 12,
+    height: 12,
+    borderRadius: 6,
+    backgroundColor: '#5BC0BE',
+    opacity: 0.5,
+  },
+  subtitle: {
+    color: 'rgba(255, 255, 255, 0.6)',
+    fontSize: 16,
+    marginTop: 32,
+    textAlign: 'center',
+  },
+  dailyCount: {
+    color: 'rgba(255, 255, 255, 0.4)',
+    fontSize: 12,
+    marginTop: 12,
+  },
+  buttonGroup: {
+    gap: 16,
+    marginBottom: 16,
+  },
+  buttonContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: 12,
+  },
+  buttonIcon: {
+    fontSize: 32,
+  },
+  buttonTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+  buttonSubtitle: {
+    color: 'rgba(255, 255, 255, 0.5)',
+    fontSize: 14,
+  },
+  drawerContent: {
+    flex: 1,
+    paddingHorizontal: 24,
+    paddingTop: 8,
+  },
+  drawerTitle: {
+    color: '#FFFFFF',
+    fontSize: 18,
+    fontWeight: '600',
+    textAlign: 'center',
+    marginBottom: 24,
+  },
+  drawerOptions: {
+    gap: 16,
+  },
+  optionItem: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 16,
+  },
+  optionIcon: {
+    fontSize: 32,
+  },
+  optionTextContainer: {
+    flex: 1,
+  },
+  optionTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+  optionSubtitle: {
+    color: 'rgba(255, 255, 255, 0.5)',
+    fontSize: 14,
+  },
+  optionArrow: {
+    color: 'rgba(255, 255, 255, 0.3)',
+    fontSize: 20,
+  },
+  errorContainer: {
+    position: 'absolute',
+    bottom: 16,
+    left: 16,
+    right: 16,
+    backgroundColor: 'rgba(239, 68, 68, 0.9)',
+    paddingHorizontal: 16,
+    paddingVertical: 12,
+    borderRadius: 12,
+  },
+  errorText: {
+    color: '#FFFFFF',
+    fontSize: 14,
+    textAlign: 'center',
+  },
+});
 
 export default memo(HomeScreen);

@@ -3,9 +3,10 @@ module.exports = {
   content: [
     "./app/**/*.{js,jsx,ts,tsx}",
     "./components/**/*.{js,jsx,ts,tsx}",
+    "./hooks/**/*.{js,jsx,ts,tsx}",
+    "./data/**/*.{js,jsx,ts,tsx}",
+    "./services/**/*.{js,jsx,ts,tsx}",
   ],
-  presets: [require("nativewind/preset")],
-  darkMode: "class",
   theme: {
     extend: {
       colors: {
@@ -14,17 +15,6 @@ module.exports = {
         bioluminescent: "#5BC0BE",
         dawn: "#FFD166",
         glass: "rgba(255, 255, 255, 0.05)",
-      },
-      fontFamily: {
-        sans: [
-          "-apple-system",
-          "BlinkMacSystemFont",
-          "Segoe UI",
-          "Roboto",
-          "Helvetica Neue",
-          "Arial",
-          "sans-serif",
-        ],
       },
     },
   },

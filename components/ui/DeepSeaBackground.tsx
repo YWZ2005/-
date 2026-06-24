@@ -138,6 +138,7 @@ function DeepSeaBackgroundComponent({
 
   return (
     <View style={styles.container}>
+      <View style={styles.solidBackground} />
       <LinearGradient
         colors={['#0B132B', '#1C2541']}
         style={StyleSheet.absoluteFill}
@@ -158,6 +159,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     overflow: 'hidden',
+    backgroundColor: '#0B132B',
+  },
+  solidBackground: {
+    ...StyleSheet.absoluteFillObject,
+    backgroundColor: '#0B132B',
   },
   childrenContainer: {
     flex: 1,
@@ -167,11 +173,6 @@ const styles = StyleSheet.create({
   particle: {
     position: 'absolute',
     backgroundColor: '#5BC0BE',
-    shadowColor: '#5BC0BE',
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 0.8,
-    shadowRadius: 10,
-    elevation: 5,
   },
 });
 
